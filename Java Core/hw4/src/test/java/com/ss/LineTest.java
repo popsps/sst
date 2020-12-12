@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.ss.Line;
-import org.junit.jupiter.api.Test;
-
 class LineTest {
 
   @Test
