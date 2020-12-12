@@ -1,5 +1,9 @@
 package com.ss;
 
+/**
+ * A simple deadlock similar to what we implemented during class
+ * a and b block each other.
+ */
 public class DeadlockDemo {
   public static void main(String[] args) {
 

@@ -6,6 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A simple producer consumer that uses a bounded buffer
+ * The size never goes above the capacity which is 5
+ * You can play with Thead.sleep to check and verify different scenarios
  */
 public class ProducerConsumerDemo {
   public static void main(String[] args) {

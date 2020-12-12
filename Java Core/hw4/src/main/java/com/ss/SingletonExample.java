@@ -1,5 +1,8 @@
 package com.ss;
 
+/**
+ * A simple singleton example with double checked locking
+ */
 public class SingletonExample {
   private static volatile SingletonExample instance = null;
 
