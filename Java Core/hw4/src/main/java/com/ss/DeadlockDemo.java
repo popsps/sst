@@ -1,7 +1,5 @@
 package com.ss;
 
-import java.awt.*;
-
 public class DeadlockDemo {
   public static void main(String[] args) {
 
