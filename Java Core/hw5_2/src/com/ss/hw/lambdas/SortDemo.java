@@ -3,6 +3,9 @@ package com.ss.hw.lambdas;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Demo sort using Comparator based on different points
+ */
 public class SortDemo {
   public static void main(String[] args) {
     String[] arr = new String[]{"Nicolas ", "Kaydee", "Atif", "Katie",
