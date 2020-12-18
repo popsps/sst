@@ -22,4 +22,18 @@ public class CustomerDao {
                         resultSet.getString("fName"),
                         resultSet.getString("lName"))));
     }
+
+    public Customer findById(Long id) {
+        return jdbcTemplate.queryForObject("select * from customer wher id = ?",
+                new Object[]{id},
+                ((resultSet, i) ->
+                        new Customer(resultSet.getLong("id"),
+                                resultSet.getString("fName"),
+                                resultSet.getString("lName"))));
+    }
+
+    public int save(Customer customer) {
+        return jdbcTemplate.update("insert into customer values ( ?, ?, ?)",
+                customer.getfName(), customer.getlName(), customer.getId());
+    }
 }
