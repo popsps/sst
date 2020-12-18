@@ -33,7 +33,7 @@ public class CustomerDao {
     }
 
     public int save(Customer customer) {
-        return jdbcTemplate.update("insert into customer values ( ?, ?, ?)",
+        return jdbcTemplate.update("insert into customer (fname, lname, id) values (?,?,?)",
                 customer.getfName(), customer.getlName(), customer.getId());
     }
 }

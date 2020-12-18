@@ -1,5 +1,7 @@
 package com.ss.hw.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,7 +13,9 @@ public class Customer {
     private String fName;
     private String lName;
 
-    public Customer(long id, String fname, String lname) {
+    public Customer(@JsonProperty("id") long id,
+                    @JsonProperty("fname") String fname,
+                    @JsonProperty("lname") String lname) {
         this.id = id;
         this.fName = fname;
         this.lName = lname;
