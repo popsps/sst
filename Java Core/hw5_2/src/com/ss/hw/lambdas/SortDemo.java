@@ -1,7 +1,6 @@
 package com.ss.hw.lambdas;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Demo sort using Comparator based on different points
