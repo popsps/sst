@@ -12,7 +12,9 @@ public class Customer {
     private String lName;
 
     public Customer(long id, String fname, String lname) {
-
+        this.id = id;
+        this.fName = fname;
+        this.lName = lname;
     }
 
     public Customer() {
