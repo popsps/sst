@@ -25,8 +25,8 @@ public class BookingService {
         return bookingDao.save(booking);
     }
 
-    public Booking getMyBooking(Long id) {
-        return bookingDao.findById(new BookingId(id))
+    public Booking getMyBooking(Long booker_id, Long booking_id) {
+        return bookingDao.findById(new BookingId(booker_id, booking_id))
                 .orElse(null);
     }
 
@@ -34,7 +34,7 @@ public class BookingService {
         return null;
     }
 
-    public void deleteMyBooking(Long id) {
-        bookingDao.deleteById(new BookingId(id));
+    public void deleteMyBooking(Long bookerId, Long bookingId) {
+        bookingDao.deleteById(new BookingId(bookerId, bookingId));
     }
 }

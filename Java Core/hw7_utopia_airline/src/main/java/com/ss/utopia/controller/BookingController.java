@@ -18,7 +18,7 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-//    @GetMapping(produces = {"application/xml"})// only support xml
+    //    @GetMapping(produces = {"application/xml"})// only support xml
     @GetMapping
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
@@ -30,9 +30,10 @@ public class BookingController {
         return bookingService.makeABooking(booking);
     }
 
-    @GetMapping("/{id}")
-    public Booking getMyBooking(@PathVariable("id") Long id) {
-        return bookingService.getMyBooking(id);
+    @GetMapping("/{booker_id}/{booking_id}")
+    public Booking getMyBooking(@PathVariable("booker_id") Long booker_id,
+                                @PathVariable("booking_id") Long booking_id) {
+        return bookingService.getMyBooking(booker_id, booking_id);
     }
 
     @PostMapping("/payment/{id}")
@@ -40,8 +41,9 @@ public class BookingController {
         return bookingService.payForMyBooking(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteMyBooking(@PathVariable("id") Long id) {
-        bookingService.deleteMyBooking(id);
+    @DeleteMapping("/{booker_id}/{booking_id}")
+    public void deleteMyBooking(@PathVariable("booker_id") Long bookerId,
+                                @PathVariable("booking_id") Long bookingId) {
+        bookingService.deleteMyBooking(bookerId, bookingId);
     }
 }

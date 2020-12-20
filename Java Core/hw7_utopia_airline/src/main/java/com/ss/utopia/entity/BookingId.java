@@ -2,13 +2,19 @@ package com.ss.utopia.entity;
 
 import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 
 @Embeddable
 public class BookingId implements Serializable {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookingId;
     private long bookerId;
+
+    public BookingId(long bookerId, long bookingId) {
+        this.bookerId = bookerId;
+        this.bookingId = bookingId;
+    }
 
     public BookingId(long bookerId) {
         this.bookerId = bookerId;
