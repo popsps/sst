@@ -2,6 +2,7 @@ package com.ss.utopia.service;
 
 import com.ss.utopia.dao.BookingDao;
 import com.ss.utopia.entity.Booking;
+import com.ss.utopia.entity.BookingId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +18,23 @@ public class BookingService {
     }
 
     public List<Booking> getAllBookings() {
-        return null;
+        return bookingDao.findAll();
     }
 
-    public List<Booking> makeABooking() {
+    public Booking makeABooking(Booking booking) {
+        return bookingDao.save(booking);
     }
 
     public Booking getMyBooking(Long id) {
+        return bookingDao.findById(new BookingId(id))
+                .orElse(null);
     }
 
     public Booking payForMyBooking(Long id) {
+        return null;
     }
 
-    public Booking deleteMyBooking(Long id) {
+    public void deleteMyBooking(Long id) {
+        bookingDao.deleteById(new BookingId(id));
     }
 }

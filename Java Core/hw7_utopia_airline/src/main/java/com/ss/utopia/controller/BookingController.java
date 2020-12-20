@@ -5,6 +5,7 @@ import com.ss.utopia.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,8 +24,9 @@ public class BookingController {
     }
 
     @PostMapping
-    public List<Booking> makeABooking() {
-        return bookingService.makeABooking();
+    public Booking makeABooking(
+            @RequestBody @Valid Booking booking) {
+        return bookingService.makeABooking(booking);
     }
 
     @GetMapping("/{id}")
@@ -38,7 +40,7 @@ public class BookingController {
     }
 
     @DeleteMapping("/{id}")
-    public Booking deleteMyBooking(@PathVariable("id") Long id) {
-        return bookingService.deleteMyBooking(id);
+    public void deleteMyBooking(@PathVariable("id") Long id) {
+        bookingService.deleteMyBooking(id);
     }
 }

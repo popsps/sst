@@ -41,34 +41,3 @@ public class Booking {
     }
 }
 
-@Embeddable
-class BookingId implements Serializable {
-    private long bookingId;
-    private long bookerId;
-
-    public BookingId(long bookingId, long bookerId) {
-        this.bookingId = bookingId;
-        this.bookerId = bookerId;
-    }
-
-    public BookingId() {
-
-    }
-
-    public long getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(long bookingId) {
-        this.bookingId = bookingId;
-    }
-
-
-    public long getBookerId() {
-        return bookerId;
-    }
-
-    public void setBookerId(long bookerId) {
-        this.bookerId = bookerId;
-    }
-}

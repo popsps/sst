@@ -1,7 +1,9 @@
 package com.ss.utopia.dao;
 
-import org.springframework.stereotype.Repository;
+import com.ss.utopia.entity.Booking;
+import com.ss.utopia.entity.BookingId;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class BookingDao {
+public interface BookingDao extends JpaRepository<Booking, BookingId> {
+
 }
