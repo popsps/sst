@@ -18,6 +18,7 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
+//    @GetMapping(produces = {"application/xml"})// only support xml
     @GetMapping
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
