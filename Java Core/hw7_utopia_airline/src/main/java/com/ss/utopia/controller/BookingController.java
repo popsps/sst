@@ -1,9 +1,12 @@
 package com.ss.utopia.controller;
 
 import com.ss.utopia.entity.Booking;
+import com.ss.utopia.exception.ApiRequestException;
 import com.ss.utopia.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,6 +24,7 @@ public class BookingController {
     //    @GetMapping(produces = {"application/xml"})// only support xml
     @GetMapping
     public List<Booking> getAllBookings() {
+//        throw new ApiRequestException("no...");
         return bookingService.getAllBookings();
     }
 
@@ -28,6 +32,7 @@ public class BookingController {
     public Booking makeABooking(
             @RequestBody @Valid Booking booking) {
         return bookingService.makeABooking(booking);
+//        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"");
     }
 
     @GetMapping("/{booker_id}/{booking_id}")
