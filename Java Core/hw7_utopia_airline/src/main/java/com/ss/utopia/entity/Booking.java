@@ -1,17 +1,18 @@
 package com.ss.utopia.entity;
 
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.io.Serializable;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table
 public class Booking {
     @EmbeddedId
     private BookingId bookingId;
+    @NonNull
     private Boolean isActive;
+    @NotBlank
     private String stripeId;
 
 

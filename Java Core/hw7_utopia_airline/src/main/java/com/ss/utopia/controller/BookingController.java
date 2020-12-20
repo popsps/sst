@@ -1,12 +1,9 @@
 package com.ss.utopia.controller;
 
 import com.ss.utopia.entity.Booking;
-import com.ss.utopia.exception.ApiRequestException;
 import com.ss.utopia.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -35,10 +32,15 @@ public class BookingController {
 //        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"");
     }
 
-    @GetMapping("/{booker_id}/{booking_id}")
-    public Booking getMyBooking(@PathVariable("booker_id") Long booker_id,
-                                @PathVariable("booking_id") Long booking_id) {
-        return bookingService.getMyBooking(booker_id, booking_id);
+    @GetMapping("/{bookerId}")
+    public List<Booking> getMyBookings(@PathVariable("bookerId") Long bookerId) {
+        return bookingService.getMyBookings(bookerId);
+    }
+
+    @GetMapping("/{bookerId}/{bookingId}")
+    public Booking getMyBooking(@PathVariable("bookerId") Long bookerId,
+                                @PathVariable("bookingId") Long bookingId) {
+        return bookingService.getMyBooking(bookerId, bookingId);
     }
 
     @PostMapping("/payment/{id}")
@@ -46,9 +48,9 @@ public class BookingController {
         return bookingService.payForMyBooking(id);
     }
 
-    @DeleteMapping("/{booker_id}/{booking_id}")
-    public void deleteMyBooking(@PathVariable("booker_id") Long bookerId,
-                                @PathVariable("booking_id") Long bookingId) {
+    @DeleteMapping("/{bookerId}/{bookingId}")
+    public void deleteMyBooking(@PathVariable("bookerId") Long bookerId,
+                                @PathVariable("bookingId") Long bookingId) {
         bookingService.deleteMyBooking(bookerId, bookingId);
     }
 }
