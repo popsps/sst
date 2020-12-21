@@ -8,6 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BookingDao extends JpaRepository<Booking, BookingId> {
-    //    List<Booking> findByBookingIdBookerId(Long id);
     List<Booking> findByBookerId(Long id);
 }
