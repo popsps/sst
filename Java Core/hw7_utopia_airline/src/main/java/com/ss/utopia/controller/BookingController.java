@@ -3,6 +3,7 @@ package com.ss.utopia.controller;
 import com.ss.utopia.entity.Booking;
 import com.ss.utopia.service.BookingService;
 import org.hibernate.HibernateException;
+import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -45,10 +46,8 @@ public class BookingController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             else
                 return new ResponseEntity<>(bookingDB, HttpStatus.CREATED);
-        } catch (JpaSystemException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } catch (DataIntegrityViolationException e) {
+        } catch (JpaSystemException | DataIntegrityViolationException
+                | NullPointerException | InvalidPropertyException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             e.printStackTrace();

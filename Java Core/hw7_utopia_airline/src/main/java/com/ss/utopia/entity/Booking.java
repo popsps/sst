@@ -10,7 +10,9 @@ import javax.validation.constraints.NotBlank;
 @IdClass(BookingId.class)
 public class Booking {
     @Id
-    private long bookerId;
+    @Column(nullable = false)
+    @NonNull
+    private Long bookerId;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookingId;
