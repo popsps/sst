@@ -23,7 +23,8 @@ public class BookingService {
     }
 
     public Booking makeABooking(Booking booking) {
-        return bookingDao.save(booking);
+        var AddedBooking = bookingDao.saveAndFlush(booking);
+        return AddedBooking;
     }
 
     public Booking getMyBooking(Long bookerId, Long bookingId) {
@@ -40,6 +41,6 @@ public class BookingService {
     }
 
     public List<Booking> getMyBookings(Long bookerId) {
-        return bookingDao.findByBookingIdBookerId(bookerId);
+        return bookingDao.findByBookerId(bookerId);
     }
 }

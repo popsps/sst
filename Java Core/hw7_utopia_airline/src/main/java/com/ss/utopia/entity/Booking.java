@@ -7,23 +7,54 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table
+@IdClass(BookingId.class)
 public class Booking {
-    @EmbeddedId
-    private BookingId bookingId;
+    @Id
+    private long bookerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long bookingId;
     @NonNull
     private Boolean isActive;
     @NotBlank
     private String stripeId;
 
+    public Booking() {
+    }
 
-    public Boolean getIsActive() {
+    public Booking(long bookingId, long bookerId,
+                   @NonNull Boolean isActive,
+                   @NotBlank String stripeId) {
+        this.bookingId = bookingId;
+        this.bookerId = bookerId;
+        this.isActive = isActive;
+        this.stripeId = stripeId;
+    }
+
+    public long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
+    }
+
+    public long getBookerId() {
+        return bookerId;
+    }
+
+    public void setBookerId(long bookerId) {
+        this.bookerId = bookerId;
+    }
+
+    @NonNull
+    public Boolean getActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setActive(@NonNull Boolean active) {
+        isActive = active;
     }
-
 
     public String getStripeId() {
         return stripeId;
@@ -31,14 +62,6 @@ public class Booking {
 
     public void setStripeId(String stripeId) {
         this.stripeId = stripeId;
-    }
-
-    public BookingId getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(BookingId bookingId) {
-        this.bookingId = bookingId;
     }
 }
 

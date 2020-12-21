@@ -1,26 +1,25 @@
 package com.ss.utopia.entity;
 
-import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import java.io.Serializable;
+import org.springframework.lang.NonNull;
 
-@Embeddable
+import java.io.Serializable;
+import java.util.Objects;
+
+
 public class BookingId implements Serializable {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookingId;
     private long bookerId;
 
-    public BookingId(long bookerId, long bookingId) {
-        this.bookerId = bookerId;
-        this.bookingId = bookingId;
+    public BookingId() {
     }
 
     public BookingId(long bookerId) {
         this.bookerId = bookerId;
     }
 
-    public BookingId() {
+    public BookingId(long bookerId, long bookingId) {
+        this.bookingId = bookingId;
+        this.bookerId = bookerId;
     }
 
     public long getBookingId() {
@@ -31,12 +30,24 @@ public class BookingId implements Serializable {
         this.bookingId = bookingId;
     }
 
-
     public long getBookerId() {
         return bookerId;
     }
 
     public void setBookerId(long bookerId) {
         this.bookerId = bookerId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookingId bookingId1 = (BookingId) o;
+        return bookingId == bookingId1.bookingId && bookerId == bookingId1.bookerId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookingId, bookerId);
     }
 }
