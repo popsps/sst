@@ -24,7 +24,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(long bookingId, long bookerId,
+    public Booking(long bookingId, @NonNull Long bookerId,
                    @NonNull Boolean isActive,
                    @NotBlank String stripeId) {
         this.bookingId = bookingId;

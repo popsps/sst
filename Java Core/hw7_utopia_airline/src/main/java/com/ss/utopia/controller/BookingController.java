@@ -2,7 +2,6 @@ package com.ss.utopia.controller;
 
 import com.ss.utopia.entity.Booking;
 import com.ss.utopia.service.BookingService;
-import org.hibernate.HibernateException;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,32 +56,32 @@ public class BookingController {
     }
 
     @GetMapping("/{bookerId}")
-    public ResponseEntity<List<Booking>> getMyBookings(@PathVariable("bookerId") Long bookerId) {
+    public ResponseEntity<List<Booking>> getMyBookings(
+            @PathVariable("bookerId") Long bookerId,
+            @RequestParam(name = "bookingId", required = false)
+            @Valid Long bookingId) {
         try {
-            var myBookings = bookingService.getMyBookings(bookerId);
-            if (myBookings == null)
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            else
-                return new ResponseEntity<>(myBookings, HttpStatus.OK);
+            if (bookingId == null) {
+                var myBookings = bookingService.getMyBookings(bookerId);
+                if (myBookings == null)
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                else
+                    return new ResponseEntity<>(myBookings, HttpStatus.OK);
+            } else {
+                var booking = bookingService.getMyBooking(bookerId, bookingId);
+                List<Booking> myBooking = new ArrayList<>();
+                myBooking.add(booking);
+                if (booking == null)
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                else
+                    return new ResponseEntity<>(myBooking, HttpStatus.OK);
+            }
+
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/{bookerId}/{bookingId}")
-    public ResponseEntity<Booking> getMyBooking(@PathVariable("bookerId") Long bookerId,
-                                                @PathVariable("bookingId") Long bookingId) {
-        try {
-            var booking = bookingService.getMyBooking(bookerId, bookingId);
-            if (booking == null)
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            else
-                return new ResponseEntity<>(booking, HttpStatus.OK);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-    }
 
     @PostMapping("/payment/{id}")
     public Booking payForMyBooking(@PathVariable("id") Long id) {
