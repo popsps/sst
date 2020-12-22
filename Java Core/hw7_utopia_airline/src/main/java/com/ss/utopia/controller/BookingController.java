@@ -59,7 +59,7 @@ public class BookingController {
     public ResponseEntity<List<Booking>> getMyBookings(
             @PathVariable("bookerId") Long bookerId,
             @RequestParam(name = "bookingId", required = false)
-            @Valid Long bookingId) {
+                    Long bookingId) {
         try {
             if (bookingId == null) {
                 var myBookings = bookingService.getMyBookings(bookerId);
