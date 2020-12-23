@@ -21,25 +21,24 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class BookingServiceTest {
 
-    //    private BookingDao bookingDao = Mockito.mock(BookingDao.class);
     @Mock
     private BookingDao bookingDao;
 
     @Test
     @DisplayName("Test to get all bookings")
     void getAllBookings() {
+        BookingService bookingService = new BookingService(bookingDao);
         Booking booking = new Booking(12, 234L,
                 true, "543");
         Booking booking2 = new Booking(3412, 4L,
                 true, "67");
         Booking booking3 = new Booking(1432, 234L,
                 false, "67");
-        BookingService bookingService = new BookingService(bookingDao);
         var bookings = List.of(booking, booking2, booking3);
         Mockito.when(bookingDao.findAll())
                 .thenReturn(bookings);
         var retrievedBookings = bookingService.getAllBookings();
-        assertEquals(bookings, retrievedBookings);
+        assertIterableEquals(bookings, retrievedBookings);
     }
 
     @Test
@@ -51,6 +50,7 @@ public class BookingServiceTest {
         Mockito.when(bookingDao.saveAndFlush(booking)).thenReturn(booking);
         var actualBooking = bookingService.makeABooking(booking);
         assertEquals(booking, actualBooking);
+
     }
 
     @Test
@@ -88,6 +88,6 @@ public class BookingServiceTest {
         Mockito.when(bookingDao.findByBookerId(34L))
                 .thenReturn(expectedBookings);
         var retrievedBookings = bookingService.getMyBookings(34L);
-        assertEquals(expectedBookings, retrievedBookings);
+        assertIterableEquals(expectedBookings, retrievedBookings);
     }
 }
