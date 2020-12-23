@@ -9,61 +9,70 @@ import javax.validation.constraints.NotBlank;
 @Table
 @IdClass(BookingId.class)
 public class Booking {
-    @Id
-    @Column(nullable = false)
-    @NonNull
-    private Long bookerId;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long bookingId;
-    @NonNull
-    private Boolean isActive;
-    @NotBlank
-    private String stripeId;
+  @Id
+  @Column(nullable = false)
+  @NonNull
+  private Long bookerId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long bookingId;
+  @NonNull
+  private Boolean isActive;
+  @NotBlank
+  private String stripeId;
 
-    public Booking() {
-    }
+  public Booking() {
+  }
 
-    public Booking(long bookingId, @NonNull Long bookerId,
-                   @NonNull Boolean isActive,
-                   @NotBlank String stripeId) {
-        this.bookingId = bookingId;
-        this.bookerId = bookerId;
-        this.isActive = isActive;
-        this.stripeId = stripeId;
-    }
+  public Booking(long bookingId, @NonNull Long bookerId,
+                 @NonNull Boolean isActive,
+                 @NotBlank String stripeId) {
+    this.bookingId = bookingId;
+    this.bookerId = bookerId;
+    this.isActive = isActive;
+    this.stripeId = stripeId;
+  }
 
-    public long getBookingId() {
-        return bookingId;
-    }
+  public Booking(@NonNull Long bookerId,
+                 @NonNull Boolean isActive,
+                 @NotBlank String stripeId) {
+    this.bookingId = bookingId;
+    this.bookerId = bookerId;
+    this.isActive = isActive;
+    this.stripeId = stripeId;
+  }
 
-    public void setBookingId(long bookingId) {
-        this.bookingId = bookingId;
-    }
+  public long getBookingId() {
+    return bookingId;
+  }
 
-    public long getBookerId() {
-        return bookerId;
-    }
+  public void setBookingId(long bookingId) {
+    this.bookingId = bookingId;
+  }
 
-    public void setBookerId(long bookerId) {
-        this.bookerId = bookerId;
-    }
+  public long getBookerId() {
+    return bookerId;
+  }
 
-    @NonNull
-    public Boolean getActive() {
-        return isActive;
-    }
+  public void setBookerId(long bookerId) {
+    this.bookerId = bookerId;
+  }
 
-    public void setActive(@NonNull Boolean active) {
-        isActive = active;
-    }
+  @NonNull
+  public Boolean getActive() {
+    return isActive;
+  }
 
-    public String getStripeId() {
-        return stripeId;
-    }
+  public void setActive(@NonNull Boolean active) {
+    isActive = active;
+  }
 
-    public void setStripeId(String stripeId) {
-        this.stripeId = stripeId;
-    }
+  public String getStripeId() {
+    return stripeId;
+  }
+
+  public void setStripeId(String stripeId) {
+    this.stripeId = stripeId;
+  }
 }
 
